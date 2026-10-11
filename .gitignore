@@ -1,0 +1,33 @@
+# Secrets and credentials - never commit
+*.pem
+*.key
+.env
+.env.*
+!.env.example
+.aws/
+credentials
+*.tfvars
+!example.tfvars
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+.terraform.lock.hcl.bak
+*.tfplan
+
+# Python / Node
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local cluster artifacts
+kubeconfig*
