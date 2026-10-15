@@ -1,0 +1,34 @@
+# Local development only. The credentials below are throwaway values for a database
+# that is reachable only from this machine. Never reuse them anywhere else.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: shortlink
+      POSTGRES_PASSWORD: shortlink
+      POSTGRES_DB: shortlink
+    # No published port: only the api container needs to reach the database.
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U shortlink -d shortlink"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  api:
+    build: .
+    environment:
+      SHORTLINK_DATABASE_URL: postgresql+psycopg://shortlink:shortlink@db:5432/shortlink
+      SHORTLINK_BASE_URL: http://localhost:8000
+    ports:
+      - "127.0.0.1:8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      sh -c "alembic upgrade head &&
+             uvicorn --factory shortlink.main:create_app --host 0.0.0.0 --port 8000"
+
+volumes:
+  pgdata:

@@ -24,9 +24,9 @@ Delete Kubernetes-created load balancers/volumes (Argo CD apps) BEFORE destroyin
 ## Phases
 Status: `[ ]` todo · `[~]` in progress · `[x]` done
 
-- [~] **0. Plan**: requirements, repo layout, ADRs, architecture diagram, cost estimate
+- [x] **0. Plan**: requirements, repo layout, ADRs, architecture diagram, cost estimate (diagram still to draw)
 - [ ] **1. Foundations**: Terraform remote state, VPC module, IAM baseline, budget alarms
-- [ ] **2. Application**: FastAPI app, Dockerfile, tests, Docker Compose
+- [x] **2. Application**: FastAPI app, Dockerfile, tests, Docker Compose (13 tests passing, verified on Postgres)
 - [ ] **3. Local Kubernetes**: kind cluster, Helm chart, ingress, probes, limits, HPA
 - [ ] **4. EKS**: Terraform EKS module, managed node group, OIDC provider, IRSA roles
 - [ ] **5. Add-ons**: AWS Load Balancer Controller, External Secrets, metrics-server, Argo CD
