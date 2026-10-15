@@ -21,7 +21,11 @@ or accounts (see ADR).
 - `modules/`: `vpc`, `eks`, `ecr`, `rds` (reusable)
 - `envs/dev`, `envs/prod`: compose the modules
 
+## Decisions (2026-10-11)
+- Backend: Python FastAPI
+- Database: RDS PostgreSQL
+- Region: eu-north-1 (Stockholm)
+- No custom domain: use the ALB hostname (HTTP only unless we add a cert later; note this in SECURITY.md)
+
 ## Open questions
-- Domain name + ACM/Route 53, or use the ALB hostname only?
-- Postgres on RDS vs DynamoDB for click counters?
 - Prometheus stack in-cluster vs Amazon Managed Prometheus?
