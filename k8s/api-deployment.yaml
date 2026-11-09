@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  namespace: shortlink
+  labels:
+    app: shortlink-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: shortlink-api
+  template:
+    metadata:
+      labels:
+        app: shortlink-api
+    spec:
+      containers:
+        - name: api
+          image: shortlink-api:0.1.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8000
+                name: shortlink-db
